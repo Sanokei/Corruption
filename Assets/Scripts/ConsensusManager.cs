@@ -34,10 +34,10 @@ public class ConsensusManager : MonoBehaviour
         }
     }
 
-    private long _Welfare;
+    private ulong _Welfare;
     [SerializeField] TMP_Text WelfareText;
 
-    public long Welfare
+    public ulong Welfare
     {
         get{return _Welfare;}
         set

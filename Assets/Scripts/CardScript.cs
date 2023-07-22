@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CardScript : MonoBehaviour
 {
+    [SerializeField] RectTransform Rect;
     [SerializeField] GameObject Card;
-    [SerializeField] Camera myMainCamera;
     Vector3 offset;
     Plane dragPlane;
-    bool mouseDown = false;
+    public TMP_Text Text;
+    public CardScriptableObject cso;
 
     void OnMouseDown()
     {
-        mouseDown = true;
-        dragPlane = new Plane(myMainCamera.transform.forward, transform.position); 
-        Ray camRay = myMainCamera.ScreenPointToRay(Input.mousePosition); 
+        dragPlane = new Plane(ChoicesManager.Instance.maincamera.transform.forward, transform.position); 
+        Ray camRay = ChoicesManager.Instance.maincamera.ScreenPointToRay(Input.mousePosition); 
 
         float planeDist;
         dragPlane.Raycast(camRay, out planeDist); 
@@ -22,7 +23,7 @@ public class CardScript : MonoBehaviour
     }
     void OnMouseDrag()
     {   
-        Ray camRay = myMainCamera.ScreenPointToRay(Input.mousePosition); 
+        Ray camRay = ChoicesManager.Instance.maincamera.ScreenPointToRay(Input.mousePosition); 
 
         float planeDist;
         dragPlane.Raycast(camRay, out planeDist);
@@ -31,15 +32,31 @@ public class CardScript : MonoBehaviour
 
     void OnMouseUp()
     {
-        mouseDown = false;
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (!mouseDown)
+        if(Rect.Overlaps(ChoicesManager.Instance.yesrect))
         {
-            print(other.name);
+            run();
+            Destroy(gameObject);
         }
-        print(other.name);
+        if(Rect.Overlaps(ChoicesManager.Instance.norect))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.localPosition = new Vector3(0,1,0);
+        }
+    }
+    void Awake()
+    {
+        transform.localPosition = new Vector3(0,1,0);
+    }
+    public void run()
+    {
+        MapManager.Instance.DamageRandomCountry(cso.DamageCountries);
+        ConsensusManager.Instance.WarFund += cso.ChangeWarBy;
+        ConsensusManager.Instance.Tax += cso.ChangeTaxBy;
+        ConsensusManager.Instance.Welfare += cso.ChangeWelfareBy;
+        ConsensusManager.Instance.CentralBank += cso.ChangeCentralBankBy;
+        ConsensusManager.Instance.ReElectionFund += cso.ChangeElectionFundBy;
     }
 }
