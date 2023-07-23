@@ -23,6 +23,41 @@ public class MapManager : MonoBehaviour
     [SerializeField] Image _West; // west
     public bool DamageRandomCountry(int numberOfTimes)
     {
+        for(int i = 0; i > numberOfTimes; i--)
+        {
+            uint[] countries = {MidLevel,NorthLevel,SouthLevel,EastLevel,WestLevel};
+            int randomNum;
+            
+            do
+            {
+                if(TotalDamage == 0)
+                    return false;
+                
+                Random.InitState((int)System.DateTime.Now.Ticks);
+                randomNum = Random.Range(0, 4);
+            }
+            while(countries[randomNum] == 0);
+            
+            // needed to save countries by references but whatever
+            switch(randomNum)
+            {
+                case(0):
+                    MidLevel--;
+                break;
+                case(1):
+                    NorthLevel--;
+                break;
+                case(2):
+                    SouthLevel--;
+                break;
+                case(3):
+                    EastLevel--;
+                break;
+                case(4):
+                    WestLevel--;
+                break;
+            }
+        }
         for(int i = 0; i < numberOfTimes; i++)
         {
             uint[] countries = {MidLevel,NorthLevel,SouthLevel,EastLevel,WestLevel};
@@ -66,6 +101,7 @@ public class MapManager : MonoBehaviour
             _East.color = Damage[EastLevel];
             _West.color = Damage[WestLevel];
         }
+        print((uint)(System.Convert.ToSingle(TotalDamage) * 6.66f));
         ConsensusManager.Instance.Revolution = (uint)(System.Convert.ToSingle(TotalDamage) * 6.66f);
         return true;
     }

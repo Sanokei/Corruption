@@ -5,6 +5,9 @@ using TMPro;
 
 public class CardScript : MonoBehaviour
 {
+    public delegate void OnCardGone();
+    public static OnCardGone OnCardGoneEvent;
+
     [SerializeField] RectTransform Rect;
     [SerializeField] GameObject Card;
     Vector3 offset;
@@ -29,7 +32,10 @@ public class CardScript : MonoBehaviour
         dragPlane.Raycast(camRay, out planeDist);
         transform.position = camRay.GetPoint(planeDist) + offset;
     }
-
+    void OnDisable()
+    {
+        OnCardGoneEvent?.Invoke();
+    }
     void OnMouseUp()
     {
         if(Rect.Overlaps(ChoicesManager.Instance.yesrect))
@@ -55,7 +61,7 @@ public class CardScript : MonoBehaviour
         MapManager.Instance.DamageRandomCountry(cso.DamageCountries);
         ConsensusManager.Instance.WarFund += cso.ChangeWarBy;
         ConsensusManager.Instance.Tax += cso.ChangeTaxBy;
-        ConsensusManager.Instance.Welfare += cso.ChangeWelfareBy;
+        ConsensusManager.Instance.Welfare = (ulong)(System.Convert.ToSingle(ConsensusManager.Instance.Welfare) + cso.ChangeWelfareBy);
         ConsensusManager.Instance.CentralBank += cso.ChangeCentralBankBy;
         ConsensusManager.Instance.ReElectionFund += cso.ChangeElectionFundBy;
     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c1ad16cc8b96b4abf23a53077ebf0c, type: 3}
+  m_Name: war 2
+  m_EditorClassIdentifier: 
+  CardText: CHINA AND TURKEY ARE BOTH IN ASIA
+  DamageCountries: 1
+  ChangeWarBy: 500000
+  ChangeTaxBy: 0
+  ChangeWelfareBy: 0
+  ChangeCentralBankBy: -500000
+  ChangeElectionFundBy: 0

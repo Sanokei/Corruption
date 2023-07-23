@@ -1,2 +1,7 @@
-Character art: https://twitter.com/_fuelli
+Character art: https://sraye.itch.io/mature-male-character-sprites
 Googly Eyes: https://github.com/eriksk/googlyeyes
+Man in a Suit: https://assetstore.unity.com/packages/3d/characters/humanoids/humans/man-in-a-suit-51662
+Tank: https://assetstore.unity.com/packages/3d/vehicles/mobile-tank-230207
+Phone: https://assetstore.unity.com/packages/3d/environments/phone-booth-21150
+Oil Barrel: https://assetstore.unity.com/packages/3d/props/interior/oil-barrel-rust-223556
+Bank Note Counter: https://www.turbosquid.com/3d-models/3d-banknotes-counter-sdb-1m-1320345

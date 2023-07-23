@@ -81,7 +81,7 @@ public class ConsensusManager : MonoBehaviour
         set
         {
             _Revolution = value;
-            if(value <= 1)
+            if(value <= 1/100f)
                 RevolutionImage.fillAmount = (float)value/100f;    
         }
     }

@@ -11,7 +11,8 @@ public class CardScriptableObject : ScriptableObject
     // adds to the funds
     public long ChangeWarBy = 0;
     public int ChangeTaxBy = 0;
-    public ulong ChangeWelfareBy = 0;
+    // change by positive or negative
+    public long ChangeWelfareBy = 0;
     public long ChangeCentralBankBy = 0;
     public long ChangeElectionFundBy = 0;
 
